@@ -1,30 +1,58 @@
-<div class = "container-fluid">
-	<div class = "jumbotron">
+<nav class = "navbar">
+	<div class="row">	
 		<%= form_tag(root_path, method: :get) do %>
 			<%= text_field_tag :term, params[:term], placeholder: "Search by abbreviation" %>
 			<%= submit_tag 'Search', name: nil %>
 		<% end %>
-
-		<table>
-			<thead>
-				<tr>
-					<th>
-					</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr>
-					<% @words.each do |word| %>
-						<div class = "word">
-							<strong> <%= link_to word.abbreviation, word_path(word) %> </strong>
-						</div>
-						<% if logged_in? %>
-							<%= link_to 'Edit', edit_word_path(word) %>
-						<% end %>
-					<% end %>
-				</tr>
-			</tbody>
-		</table>
+	</div>
+</nav>
+<div class = "container-fluid">
+  <div class = "jumbotron">
+		<div class = "row">
+			<div class = "col-md-3">
+				<div class = "row center-text">
+					<h4><strong>Abbreviation</strong></h4>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class = "row center-text">
+					<h4><strong>Full Word</strong></h4>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class = "row center-text">
+					<h4><strong>Definition</strong></h4>
+				</div>
+			</div>
 		</div>
+		<% @words.each do |word| %>
+			<div class = "row">
+				<div class = "col-md-3">
+					<div class = "row center-text">
+							<p><%= word.abbreviation %></p>
+					</div>
+				</div>
+				<div class = "col-md-3">
+					<div class = "row center-text">
+						<p><%= word.full_word %></p>
+					</div>
+				</div>
+				<div class = "col-md-6">
+					<div class = "row">
+						<p><%= word.definition %></p>
+					</div>
+				</div>
+			</div>
+			<% if logged_in? %>
+				<div class = "row">
+					<div class = "col-md-6">
+						<%= link_to "Edit", edit_word_path %>
+					</div>
+					<div class = "col-md-6">
+						<%= link_to "Delete", word, confirm: "Are you sure you'd like to delete #{word.full_word}", method: delete %>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
 </div>
