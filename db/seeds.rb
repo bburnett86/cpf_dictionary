@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Word.create!(abbreviation: "ASB", full_word: "Asbestos",definition: "a heat-resistant fibrous silicate mineral that can be woven into fabrics, and is used in fire-resistant and insulating materials such as brake linings")

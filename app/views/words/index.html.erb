@@ -1,0 +1,30 @@
+<div class = "container-fluid">
+	<div class = "jumbotron">
+		<%= form_tag(root_path, method: :get) do %>
+			<%= text_field_tag :term, params[:term], placeholder: "Search by abbreviation" %>
+			<%= submit_tag 'Search', name: nil %>
+		<% end %>
+
+		<table>
+			<thead>
+				<tr>
+					<th>
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<% @words.each do |word| %>
+						<div class = "word">
+							<strong> <%= link_to word.abbreviation, word_path(word) %> </strong>
+						</div>
+						<% if logged_in? %>
+							<%= link_to 'Edit', edit_word_path(word) %>
+						<% end %>
+					<% end %>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+</div>
