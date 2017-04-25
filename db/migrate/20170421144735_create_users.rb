@@ -3,6 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
     	t.text :username, null: false
     	t.text :password_digest, null: false
+    	t.boolean :admin, default: false
     	
       t.timestamps
     end

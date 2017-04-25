@@ -1,0 +1,44 @@
+<div class = "container-fluid">
+	<div class = "jumbotron">
+		<h3 class = "center-text">Add New Word</h3>
+		<%= form_for @word do |w| %>
+			<div class="row">
+				<div class="col-md-6 align-right">
+						<%= w.label "Abbreviation:" %>
+				</div>		
+				<div class="col-md-6 align-left">
+					<%= w.text_field :abbreviation %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 align-right">
+					<%= w.label "Full Word:" %>
+				</div>
+				<div class = "col-md-6 align-left">
+					<%= w.text_field :full_word %>
+				</div>
+			</div>
+			<div class= "row">
+				<div class="col-md-6 align-right">
+					<%= w.label "Definition:" %>
+				</div>
+				<div class="col-md-6 align-left">
+					<%= w.text_area :definition %>
+				</div>
+			</div>
+			<%= w.hidden_field :user_id, value: current_user.id %>
+			<div class = "row center-text">
+				<%= w.submit "Add New Word" %>
+			</div>
+		<% end %>
+		<% if @errors %>
+		<div class="errors-container">
+			<h3 class = "errors-header">ERRORS:</h3>
+			<ol class= "errors-list">
+				<% @errors.each do |error| %>
+					<li class="error-list-item"><%= error %></li>
+				<% end %>
+			</ol>
+		<% end %>
+	</div>
+</div>

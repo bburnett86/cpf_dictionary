@@ -5,7 +5,7 @@
 				<%= link_to image_tag("CPFLogoSmall.JPG"), root_path, :class=>"navbar-left" %>
 			</div>
 			<div class = "col-md-6">	
-				<%= form_tag(results_path, method: :get, :class => "navbar-form navbar-right") do %>
+				<%= form_tag(words_path, method: :get, :class => "navbar-form navbar-right") do %>
 					<%= text_field_tag :term, params[:term], placeholder: "Search by abbreviation" %>
 					<%= submit_tag 'Search', name: nil %>
 				<% end %>
@@ -51,10 +51,13 @@
 		</div>
 		<% if logged_in? %>
 			<div class = "row">
-				<div class = "col-md-6">
+				<div class = "col-md-3">
 					<div class="row center-text">
-						<%= link_to "Edit", edit_word_path %>
+						<%= link_to "Edit", edit_word_path(word) %>
 					</div>
+				</div>
+				<div class="col-md-3">
+	
 				</div>
 				<div class = "col-md-6">
 					<div class="row center-text">
