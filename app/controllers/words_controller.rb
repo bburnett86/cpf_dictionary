@@ -1,17 +1,18 @@
 class WordsController < ApplicationController
+	include ApplicationHelper
 
-	before_action :authorize, except: [:index, :show]
+	before_action :authorize, except: [:index, :home, :results]
 
 	def index
-		@words = Word.search(params[:term])
+		@words = Word.all
 		render :index
 	end
 
 	def create
-		@word = Word.new(params[:word])
+		@word = Word.new(abbreviation: params[:word][:abbreviation], full_word: params[:word][:full_word], definition: params[:word][:definition], user_id: params[:word][:user_id])
 
 		if @word.save
-			redirect_to new_word_path
+			redirect_to results_path
 		else
 			@errors = @word.errors.full_messages
 			render :new
@@ -30,15 +31,9 @@ class WordsController < ApplicationController
 		render :edit
 	end
 
-	def show
-		@word = Word.find(params[:id])
-
-		render :show
-	end
-
 	def update
 		@word = Word.find(params[:id])
-		@word.assign_attributes!(params[:word])
+		@word.update(abbreviation: params[:word][:abbreviation], full_word: params[:word][:full_word], definition: params[:word][:definition])
 
 		if @word.save
 			redirect_to root_path
@@ -54,6 +49,15 @@ class WordsController < ApplicationController
 		@word.destroy
 
 		redirect_to root_path
+	end
+
+	def home
+		render :home
+	end
+
+	def results
+		@words = Word.search(params[:term])
+		render :results
 	end
 
 	private

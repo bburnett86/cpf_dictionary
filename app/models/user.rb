@@ -3,6 +3,8 @@ require 'bcrypt'
 class User < ApplicationRecord
 	include BCrypt
 
+	has_many :words
+
 	has_secure_password
 
 	validates :username, presence: true

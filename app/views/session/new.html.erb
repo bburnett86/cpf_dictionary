@@ -1,0 +1,40 @@
+<div class="container-fluid">
+	<div class="jumbotron">
+		<div class="row center-text">
+			<h3>Login</h3>
+		</div>
+		<div class="row">
+			<%= form_for :user, url: {action: "create", controller: "session"} do |u| %>
+				<div class="row">
+					<div class="col-md-6 align-right">
+						<%= u.label "Username" %>
+					</div>
+					<div class="col-md-6 align-left">
+						<%= u.text_field :username %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 align-right">
+						<%= u.label "Password" %>
+					</div>
+					<div class="col-md-6 align-left">
+						<%= u.password_field :password %>
+					</div>
+				</div>
+				<div class="row center-text">
+					<%=u.submit "Log In" %>
+				</div>
+			<% end %>
+		<% if @errors %>
+			<div class="errors-container">
+				<h3 class = "errors-header">ERRORS:</h3>
+				<ol class= "errors-list">
+					<% @errors.each do |error| %>
+						<li class="error-list-item"><%= error %></li>
+					<% end %>
+				</ol>
+			</div>
+		<% end %>
+		</div>
+	</div>
+</div>

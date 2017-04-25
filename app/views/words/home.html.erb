@@ -1,0 +1,11 @@
+<nav class="navbar navbar-default home-flex">
+	<div class = "container-fluid">	
+		<%= image_tag "CPFLogoFinalSmallWhite.jpg", :class=> "home-img" %>
+		<div class="nav-search-wrap">
+			<%= form_tag(results_path, method: :get) do %>
+				<%= text_field_tag :term, params[:term], :placeholder=> "Search by abbreviation" %>
+				<%= submit_tag 'Search' %>
+			<% end %>
+		</div>
+	</div>
+</nav>
