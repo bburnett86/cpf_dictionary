@@ -40,3 +40,24 @@
 .align-left{
 	text-align: left;
 }
+
+.center-content{
+  align-content: center;
+}
+
+#fixed-header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+#fixed-footer{
+  position: fixed;
+  bottom:0;
+  width: 100%;
+}
+
+.container-margin{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}

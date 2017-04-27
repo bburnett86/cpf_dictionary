@@ -4,12 +4,17 @@ class WordsController < ApplicationController
 	before_action :authorize, except: [:index, :home, :results]
 
 	def index
-		@words = Word.all
+		@words = Word.order(:abbreviation)
+		respond_to do |format|
+		  format.html
+		  format.csv { send_data @words.to_csv }
+		  format.xls 
+		end
 		render :index
 	end
 
 	def create
-		@word = Word.new(abbreviation: params[:word][:abbreviation], full_word: params[:word][:full_word], definition: params[:word][:definition], user_id: params[:word][:user_id])
+		@word = Word.new(abbreviation: params[:word][:abbreviation], full_word: params[:word][:full_word], definition: params[:word][:definition])
 
 		if @word.save
 			redirect_to results_path
@@ -58,6 +63,12 @@ class WordsController < ApplicationController
 	def results
 		@words = Word.search(params[:term])
 		render :results
+	end
+
+	def import
+	  Word.import(params[:file])
+
+	  redirect_to root_url, notice: 'Words successfully added.'
 	end
 
 	private

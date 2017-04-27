@@ -1,19 +1,4 @@
-<nav class = "navbar navbar-default">
-	<div class = "container-fluid">	
-		<div class="row">
-			<div class = "col-md-6">
-				<%= link_to image_tag("CPFLogoSmall.JPG"), root_path, :class=>"navbar-left" %>
-			</div>
-			<div class = "col-md-6">	
-				<%= form_tag(words_path, method: :get, :class => "navbar-form navbar-right") do %>
-					<%= text_field_tag :term, params[:term], placeholder: "Search by abbreviation" %>
-					<%= submit_tag 'Search', name: nil %>
-				<% end %>
-			</div>
-		</div>
-	</div>
-</nav>
-<div class = "container-fluid">
+<div class = "container-fluid container-margin">
 	<div class = "row">
 		<div class = "col-md-3">
 			<div class = "row center-text">
@@ -31,69 +16,5 @@
 			</div>
 		</div>
 	</div>
-	<% @words.each do |word| %>
-		<div class = "row">
-			<div class = "col-md-3">
-				<div class = "row center-text">
-						<p><%= word.abbreviation %></p>
-				</div>
-			</div>
-			<div class = "col-md-3">
-				<div class = "row center-text">
-					<p><%= word.full_word %></p>
-				</div>
-			</div>
-			<div class = "col-md-6">
-				<div class = "row center-text">
-					<p><%= word.definition %></p>
-				</div>
-			</div>
-		</div>
-		<% if logged_in? %>
-			<div class = "row">
-				<div class = "col-md-3">
-					<div class="row center-text">
-						<%= link_to "Edit", edit_word_path(word) %>
-					</div>
-				</div>
-				<div class="col-md-3">
-	
-				</div>
-				<div class = "col-md-6">
-					<div class="row center-text">
-						<%= link_to "Delete", word, confirm: "Are you sure you'd like to delete #{word.full_word}", method: :delete %>
-					</div>
-				</div>
-			</div>
-		<% end %>
-	<% end %>
+	<%= render @words %>
 </div>
-<nav class="navbar navbar-default">
-	<div class = "container-fluid">
-		<div class= "row">
-			<div class = "col-md-3">
-				<div class="row center-text">
-					<% if logged_in? %>
-						<%= link_to 'Log Out', session_path(current_user.id), method: :delete %>
-					<% else %>
-						<%= link_to "Log In", new_session_path %>
-					<% end %>
-				</div>
-			</div>
-			<div class = "col-md-3">
-				<div class="row center-text">
-					<% if logged_in? %>
-						<%= link_to "Add A New Word", new_word_path %>
-					<% end %>
-				</div>
-			</div>
-			<div class = "col-md-6">
-				<div class="row center-text">
-					<% if logged_in? %>
-						<%= link_to "Dictionary Index", words_path %>
-					<% end %>
-				</div>
-			</div>
-		</div>
-	</div>
-</nav>
