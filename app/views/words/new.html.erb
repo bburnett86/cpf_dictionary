@@ -1,44 +1,53 @@
-<div class = "container-fluid">
-	<div class = "jumbotron">
-		<h3 class = "center-text">Add New Word</h3>
-		<%= form_for @word do |w| %>
-			<div class="row">
-				<div class="col-md-6 align-right">
-						<%= w.label "Abbreviation:" %>
-				</div>		
-				<div class="col-md-6 align-left">
-					<%= w.text_field :abbreviation %>
-				</div>
+<div class="container-fluid container-margin">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row center-text">
+				<h3>Add New Word</h3>
 			</div>
-			<div class="row">
-				<div class="col-md-6 align-right">
-					<%= w.label "Full Word:" %>
+			<%= form_for @word do |w| %>
+				<div class="row">
+					<div class="col-md-6 align-right">
+							<%= w.label "Abbreviation:" %>
+					</div>		
+					<div class="col-md-6 align-left">
+						<%= w.text_field :abbreviation %>
+					</div>
 				</div>
-				<div class = "col-md-6 align-left">
-					<%= w.text_field :full_word %>
+				<div class="row">
+					<div class="col-md-6 align-right">
+						<%= w.label "Full Word:" %>
+					</div>
+					<div class = "col-md-6 align-left">
+						<%= w.text_field :full_word %>
+					</div>
 				</div>
-			</div>
-			<div class= "row">
-				<div class="col-md-6 align-right">
-					<%= w.label "Definition:" %>
+				<div class= "row">
+					<div class="col-md-6 align-right">
+						<%= w.label "Definition:" %>
+					</div>
+					<div class="col-md-6 align-left">
+						<%= w.text_area :definition %>
+					</div>
 				</div>
-				<div class="col-md-6 align-left">
-					<%= w.text_area :definition %>
+				<%= w.hidden_field :user_id, value: current_user.id %>
+				<div class = "row center-text">
+					<%= w.submit "Add New Word" %>
 				</div>
-			</div>
-			<%= w.hidden_field :user_id, value: current_user.id %>
-			<div class = "row center-text">
-				<%= w.submit "Add New Word" %>
-			</div>
-		<% end %>
-		<% if @errors %>
-		<div class="errors-container">
-			<h3 class = "errors-header">ERRORS:</h3>
-			<ol class= "errors-list">
-				<% @errors.each do |error| %>
-					<li class="error-list-item"><%= error %></li>
-				<% end %>
-			</ol>
-		<% end %>
+			<% end %>
+		</div>
 	</div>
+	<div class="row center-text">
+		<h3>
+			<%= link_to "Add Spreadsheet of Words", new_word_import_path %>
+		</h3>
+	</div>
+	<% if @errors %>
+	<div class="errors-container">
+		<h3 class = "errors-header">ERRORS:</h3>
+		<ol class= "errors-list center-text">
+			<% @errors.each do |error| %>
+				<li class="error-list-item"><%= error %></li>
+			<% end %>
+		</ol>
+	<% end %>
 </div>
