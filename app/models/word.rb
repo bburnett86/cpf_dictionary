@@ -2,7 +2,7 @@ require 'csv'
 class Word < ApplicationRecord
 	include ApplicationHelper
 
-	validates :abbreviation, presence: true, length: {maximum: 5}
+	validates :abbreviation, presence: true
 	validates :full_word, presence: true, uniqueness: true
 	validates :definition, presence: true
 
