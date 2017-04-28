@@ -1,44 +1,42 @@
 <div class="container-fluid container-margin">
-	<div class="jumbotron">
-		<div class="row center-text">	
-			<h3>Import Words</h3>
-			A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed:
-		</div>
-		<div class="row">
-			<div class="col-md-6 align right">	
-				<div class="row center-text">
-					<ul>
-					  <% Word.columns.each do |column| %>
-					    <% if column.name.in? ["abbreviation", "full_word", "definition"] %>
-					      <li>
-					        <strong><%= column.name %></strong> 
-					        <%= column.type.to_s.titleize %> type
-					      </li>
-					    <% end %>
-					  <% end %>
-					</ul>
-				</div>
-				<%= form_for :word_import, url: word_imports_path do |f| %>
-				  <% if @word_import.errors.any? %>
-						<div class = "row center-text">
-					    <div id="error_explanation">
-					      <h2><%= pluralize(@word_import.errors.count, "error") %> prohibited this import from completing:</h2>
-					      <ul>
-					      <% @word_import.errors.full_messages.each do |msg| %>
-					        <li><%= msg %></li>
-					      <% end %>
-					      </ul>
-					    </div>
-						</div>
+	<div class="row center-text">	
+		<h3>Import Words</h3>
+		A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed:
+	</div>
+	<div class="row">
+		<div class="col-md-6 align right">	
+			<div class="row center-text">
+				<ul>
+				  <% Word.columns.each do |column| %>
+				    <% if column.name.in? ["abbreviation", "full_word", "definition"] %>
+				      <li>
+				        <strong><%= column.name %></strong> 
+				        <%= column.type.to_s.titleize %> type
+				      </li>
+				    <% end %>
 				  <% end %>
-				</div>
-				<div class = "col-md-6">
-				  <div class="field">
-				    <%= f.file_field :file %>
-				  </div>
-				  <div class="buttons"><%= f.submit "Import" %></div>
-				<% end %>
+				</ul>
 			</div>
+			<%= form_for @word_import, method: :post do |w| %>
+			  <% if @word_import.errors.any? %>
+					<div class = "row center-text">
+				    <div id="error_explanation">
+				      <h2><%= pluralize(@word_import.errors.count, "error") %> prohibited this import from completing:</h2>
+				      <ul>
+				      <% @word_import.errors.full_messages.each do |msg| %>
+				        <li><%= msg %></li>
+				      <% end %>
+				      </ul>
+				    </div>
+					</div>
+			  <% end %>
+			</div>
+			<div class = "col-md-6">
+			  <div class="field">
+			    <%= w.file_field :file %>
+			  </div>
+			  <div class="buttons"><%= w.submit "Import" %></div>
+			<% end %>
 		</div>
 	</div>
 </div>

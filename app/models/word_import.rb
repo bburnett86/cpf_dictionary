@@ -1,5 +1,6 @@
-class WordImport < ApplicationRecord
-	attr_accessor :file
+class WordImport
+  include ActiveModel::Model
+  attr_accessor :file
 
   def initialize(attributes = {})
     attributes.each { |name, value| send("#{name}=", value) }
@@ -30,7 +31,7 @@ class WordImport < ApplicationRecord
   def load_imported_words
     spreadsheet = Roo::Spreadsheet.open(file.path)
     header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
+    (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       word = Word.find_by(abbreviation: row["abbreviation"]) || Word.new
       word.attributes = row.to_hash
