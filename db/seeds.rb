@@ -11,3 +11,4 @@ Word.create!(abbreviation: "ASB", full_word: "Asbestos",definition: "a heat-resi
 User.create!(username: "Bret", password: "password", admin: true)
 User.create!(username: "Nevin", password: "password", admin: true)
 User.create!(username: "Betty", password: "password", admin: true)
+User.create!(username: "Ed", password: "password", admin: true)
