@@ -16,7 +16,5 @@ class User < ApplicationRecord
 			end
 		end
 	end
-
-	# TEST TEST
 	
 end
