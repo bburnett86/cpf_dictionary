@@ -8,4 +8,7 @@
 
 Word.create!(abbreviation: "ASB", full_word: "Asbestos",definition: "a heat-resistant fibrous silicate mineral that can be woven into fabrics, and is used in fire-resistant and insulating materials such as brake linings")
 
-User.create!(username: "bret", password: "password", admin: true)
+User.create!(username: "Bret", password: "password", admin: true)
+User.create!(username: "Nevin", password: "password", admin: true)
+User.create!(username: "Betty", password: "password", admin: true)
+User.create!(username: "Ed", password: "password", admin: true)
