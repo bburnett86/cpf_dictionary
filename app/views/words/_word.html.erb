@@ -1,29 +1,27 @@
-<% @words.each do |word| %>
-		<div class = "row">
-			<div class = "col-md-3">
-				<div class = "row center-text">
-						<p><%= word.abbreviation %></p>
-				</div>
-				<% if logged_in? %>
-					<div class="row center-text">
-						<%= link_to "Edit", edit_word_path(word) %>
-					</div>
-				<% end %>
-			</div>
-			<div class = "col-md-3">
-				<div class = "row center-text">
-					<p><%= word.full_word %></p>
-				</div>
-				<% if logged_in? %>
-				<div class="row center-text">
-					<%= link_to "Delete", word, confirm: "Are you sure you'd like to delete #{word.full_word}", method: :delete %>
-				</div>
-				<% end %>
-			</div>
-			<div class = "col-md-6">
-				<div class = "row center-text">
-					<p><%= word.definition %></p>
-				</div>
-			</div>
+<div class = "row">
+	<div class = "col-md-3">
+		<div class = "row center-text">
+				<p><%= word.abbreviation %></p>
 		</div>
-	<% end %>
+		<% if logged_in? %>
+			<div class="row center-text">
+				<%= link_to "Edit", edit_word_path(word) %>
+			</div>
+		<% end %>
+	</div>
+	<div class = "col-md-3">
+		<div class = "row center-text">
+			<p><%= word.full_word %></p>
+		</div>
+		<% if logged_in? %>
+		<div class="row center-text">
+			<%= link_to "Delete", word, confirm: "Are you sure you'd like to delete #{word.full_word}", method: :delete %>
+		</div>
+		<% end %>
+	</div>
+	<div class = "col-md-6">
+		<div class = "row center-text">
+			<p><%= word.definition %></p>
+		</div>
+	</div>
+</div>
