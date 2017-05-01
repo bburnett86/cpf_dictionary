@@ -8,7 +8,7 @@ class WordsController < ApplicationController
 		respond_to do |format|
 		  format.html
 		  format.csv { send_data @words.to_csv }
-		  format.xlsx 
+		  format.xlsx
 		end
 		render :index
 	end

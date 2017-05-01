@@ -1,0 +1,12 @@
+
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Words") do |sheet|
+  # this is the head row of your spreadsheet
+  sheet.add_row %w(abbreviation full_word definition)
+  
+  # each word is a row on your spreadsheet
+  @words.each do |word|
+    sheet.add_row [word.abbreviation, word.full_word, word.definition]
+  end
+end

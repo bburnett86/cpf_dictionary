@@ -34,6 +34,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "roo", "~> 2.7.0"
 
+gem 'axlsx', '2.1.0.pre'
+
+gem 'axlsx_rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
