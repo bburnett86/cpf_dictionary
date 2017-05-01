@@ -45,12 +45,6 @@
   align-content: center;
 }
 
-#fixed-header{
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
 #fixed-footer{
   position: fixed;
   bottom:0;
