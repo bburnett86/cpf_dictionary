@@ -1,3 +1,4 @@
+require 'csv'
 class WordsController < ApplicationController
 	include ApplicationHelper
 
@@ -7,7 +8,10 @@ class WordsController < ApplicationController
 		@words = Word.order(:abbreviation)
 		respond_to do |format|
 		  format.html
-		  format.csv { send_data @words.to_csv }
+		  format.csv do
+	      headers['Content-Disposition'] = "attachment; filename=\"index\""
+	      headers['Content-Type'] ||= 'text/csv'
+	    end
 		  format.xlsx
 		end
 		render :index
