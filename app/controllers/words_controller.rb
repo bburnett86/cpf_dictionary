@@ -61,7 +61,7 @@ class WordsController < ApplicationController
 	end
 
 	def results
-		@words = Word.search(params[:term]).order(:abbreviation)
+		@words = Word.search(params[:term])
 		render :results
 	end
 
