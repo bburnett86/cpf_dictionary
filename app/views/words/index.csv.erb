@@ -1,5 +1,0 @@
-<%- headers = ['Abbreviation', 'Full Name', 'Definition'] -%>
-<%= CSV.generate_line headers %>
-<%- @words.each do |word| -%>
-<%= CSV.generate_line([word.abbreviation, word.full_word, word.definition]) -%>
-<%- end -%>

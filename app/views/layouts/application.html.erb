@@ -20,7 +20,7 @@
           <div class ="col-md-3 center-text">
             <% if logged_in? %>
               <p>Download Database:
-                <%= link_to "CSV", words_path(format: "csv") %> |
+                <%= link_to "Text", words_path(format: "rtf") %> |
                 <%= link_to "Excel", words_path(format: "xlsx") %>
               </p>
             <% end %>
