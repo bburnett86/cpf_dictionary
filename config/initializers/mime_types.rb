@@ -4,3 +4,5 @@
 # Mime::Type.register "text/richtext", :rtf
 
 Mime::Type.register "application/xlsx", :xlsx
+
+Mime::Type.register "application/rtf", :rtf 
