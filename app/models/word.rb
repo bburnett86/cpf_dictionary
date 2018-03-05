@@ -2,7 +2,7 @@ require 'csv'
 class Word < ApplicationRecord
 	include ApplicationHelper
 
-	validates :abbreviation, presence: true, uniqueness: true, length: {maximum: 5}
+	validates :abbreviation, presence: true, length: {maximum: 5}
 	validates :full_word, presence: true, uniqueness: true
 	validates :definition, presence: true
 
@@ -29,7 +29,7 @@ class Word < ApplicationRecord
   header = spreadsheet.row(1)
   (2..spreadsheet.last_row).each do |i|
     row = Hash[[header, spreadsheet.row(i)].transpose]
-    word = find_by(id: row["id"]) || new
+    word = find_by(abbreviation: row["abbreviation"]) || new
     word.attributes = row.to_hash
     word.save!
   end
