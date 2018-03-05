@@ -33,9 +33,13 @@ class WordImport
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      word = Word.find_by(abbreviation: row["abbreviation"]) || Word.new
-      word.attributes = row.to_hash
-      word
+      word = Word.find_by(abbreviation: row["abbreviation"])
+      if !word
+        word = Word.new
+        word.attributes = row.to_hash
+        return word
+      end
+      return word
     end    
   end
 
