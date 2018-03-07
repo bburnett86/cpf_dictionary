@@ -5,9 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Gem that can be used to hide records instead of deleting them, making them recoverable later
 gem 'tiny_tds'
-
+# Meant to allow case of connecting, querying & iterating over results to Microsoft SQL Server or Sybase databses from Ruby.
 gem 'activerecord-sqlserver-adapter'
+# Windows Directory Monitor gem is a library which can be used to monitor directories for changes.
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use postgresql as the database for Active Record
@@ -32,7 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+#gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 gem "roo", "~> 2.7.0"
 
